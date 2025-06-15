@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Invitaciones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f2f2f2;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background: white;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 250px;
+      vertical-align: top;
+      text-align: center;
+    }
+    .qr {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎉 Invitaciones Generadas</h2>
+  <div id="contenedor"></div>
+
+  <script>
+    const baseURL = "https://wolffxd.github.io/invitaciones/";
+
+    fetch("invitados.json")
+      .then(res => res.json())
+      .then(data => {
+        const contenedor = document.getElementById("contenedor");
+        data.forEach(inv => {
+          const url = `${baseURL}?id=${encodeURIComponent(inv.id)}`;
+          const qr = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=200x200`;
+
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${inv.nombre}</h3>
+            <p>Invitación válida para: <strong>${inv.personas}</strong> persona(s)</p>
+            <div class="qr"><img src="${qr}" alt="QR de ${inv.nombre}"></div>
+            <small>ID: ${inv.id}</small>
+          `;
+          contenedor.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>

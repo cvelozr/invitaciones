@@ -31,8 +31,8 @@
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const nombre = urlParams.get('nombre') || 'Invitado';
-    const personas = urlParams.get('personas') || '1';
+    const nombre = urlParams.get('nombre') || 'No autorizado';
+    const personas = urlParams.get('personas') || '0';
     document.getElementById("mensaje").innerText = `Hola ${decodeURIComponent(nombre)} 🌹`;
     document.getElementById("personas").innerText = personas;
   </script>
