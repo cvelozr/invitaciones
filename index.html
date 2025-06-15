@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Invitación</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fef6f6;
+      text-align: center;
+      padding: 50px;
+    }
+    .tarjeta {
+      border: 2px solid #e0cfcf;
+      border-radius: 15px;
+      padding: 30px;
+      background: white;
+      display: inline-block;
+    }
+    h1 {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="tarjeta">
+    <h1>¡Bienvenido(a)!</h1>
+    <p id="mensaje"></p>
+    <p>🎉 Esta invitación es válida para: <span id="personas"></span> persona(s)</p>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const nombre = urlParams.get('nombre') || 'Invitado';
+    const personas = urlParams.get('personas') || '1';
+    document.getElementById("mensaje").innerText = `Hola ${decodeURIComponent(nombre)} 🌹`;
+    document.getElementById("personas").innerText = personas;
+  </script>
+</body>
+</html>
