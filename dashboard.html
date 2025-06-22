@@ -3,24 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard de Invitaciones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f2f2f2;
-    }
-    .card {
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      background: white;
-      padding: 15px;
-      margin: 10px;
-      display: inline-block;
-      width: 250px;
-      vertical-align: top;
+       font-family: 'Playfair Display', serif;
+      background-image: url('https://www.transparenttextures.com/patterns/white-wall-3.png');
+      background-color: #f8f4f2;
+      margin: 0;
+      padding: 30px;
       text-align: center;
     }
-    .qr {
+
+    h2 {
+      font-family: 'Great Vibes', cursive;
+      color: #c29591;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #fffdfd;
+      border: 2px solid #e4d4d2;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      margin: 15px;
+      padding: 25px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    }
+
+    .qr img {
+      width: 180px;
+      height: 180px;
+      margin: 15px 0;
+    }
+
+    .titulo {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #a86c6c;
+      margin-bottom: 10px;
+    }
+
+    .texto {
+      font-size: 1em;
+      margin-bottom: 10px;
+      color: #5a4747;
+    }
+
+    small {
+      display: block;
+      color: #a2a2a2;
+      font-size: 0.8em;
       margin-top: 10px;
     }
   </style>
@@ -46,6 +82,7 @@
             <h3>${inv.nombre}</h3>
             <p>Invitación válida para: <strong>${inv.personas}</strong> persona(s)</p>
             <div class="qr"><img src="${qr}" alt="QR de ${inv.nombre}"></div>
+            <p>Mesa: <strong>${inv.mesa}</strong></p>
             <small>ID: ${inv.id}</small>
           `;
           contenedor.appendChild(card);

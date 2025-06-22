@@ -1,0 +1,97 @@
+!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Invitación</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fdf6f3;
+      padding: 40px;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .btn {
+      background-color: #d68f8f;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+    }
+    .btn:disabled {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2 id="mensaje">Cargando invitación...</h2>
+    <p id="personas"></p>
+    <p id="mesa"></p>
+    <p id="estado"></p>
+    <button class="btn" id="checkinBtn" style="display:none;">Ya llegué (Check-In)</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const API = "https://inviation-service.onrender.com/api/inv"; // <-- CAMBIA esto cuando esté en línea
+
+    const mensaje = document.getElementById("mensaje");
+    const personas = document.getElementById("personas");
+    const mesa = document.getElementById("mesa");
+    const estado = document.getElementById("estado");
+    const btn = document.getElementById("checkinBtn");
+
+    fetch(`${API}/validar?id=${id}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.valida) {
+          mensaje.textContent = `Hola ${data.nombre} 🎉`;
+          personas.textContent = `Tu invitación es válida para ${data.personas} persona(s).`;
+
+          if (!data.checkin) {
+            estado.textContent = "Aún no has hecho check-in.";
+            btn.style.display = "inline-block";
+            btn.onclick = () => {
+              fetch(`${API}/checkin`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": "Basic " + btoa("wolff:invitado123")
+                },
+                body: JSON.stringify({ id })
+              })
+              .then(res => res.json())
+              .then(resp => {
+                if (resp.exito) {
+                  estado.textContent = "✅ ¡Check-in exitoso! Bienvenidos.";
+                  btn.disabled = true;
+                  btn.textContent = "Ya estás dentro 😎";
+                } else {
+                  estado.textContent = "⚠️ Esta invitación ya fue registrada.";
+                }
+              });
+            };
+          } else {
+            estado.textContent = "⚠️ Esta invitación ya fue usada.";
+          }
+
+        } else {
+          mensaje.textContent = "Invitación no válida ❌";
+        }
+      });
+  </script>
+
+</body>
+</html>
