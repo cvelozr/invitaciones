@@ -2,16 +2,22 @@
   {
     "nombre": "Familia Hernández",
     "personas": 3,
+    "mesa": 3,
     "id": "abc123"
   },
   {
     "nombre": "Luis y Mariana",
     "personas": 2,
+    "mesa": 3,
     "id": "def456"
   },
-  {
-    "nombre": "Tío Jorge",
-    "personas": 1,
-    "id": "ghi789"
-  }
+{
+    "id": ":hv9v9w",
+    "nombre": "Emmanuel hernandez Alcauter",
+    "personas": 4,
+    "mesa": 3,
+    "checkin": false,
+    "horaLlegada": null
+}
+  
 ]
