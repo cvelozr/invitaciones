@@ -1,8 +1,8 @@
 [
     {
         "id": ":hv9v9w",
-        "nombre": "Emmanuel hernandez Alcauter",
-        "personas": 4,
+        "nombre": "Test",
+        "personas": 10,
         "mesa": 3,
         "checkin": false,
         "horaLlegada": null
