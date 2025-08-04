@@ -106,15 +106,15 @@
     {
         "id": ":0oez9l",
         "nombre": "Emmanuel Hernández Alcauter",
-        "personas": 4,
+        "personas": 5,
         "mesa": 10,
         "checkin": false,
         "horaLlegada": null
     },
     {
         "id": ":qv10ip",
-        "nombre": "Javier Ponce",
-        "personas": 4,
+        "nombre": "Lizbeth de Luna",
+        "personas": 2,
         "mesa": 10,
         "checkin": false,
         "horaLlegada": null
